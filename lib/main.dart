@@ -1,89 +1,100 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/header.dart';
-import 'categories.dart';
-import 'hamberger_list.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _systemPreferenceSwitch = true;
+  bool _lightSwitch = false;
+  bool _darkSwitch = false;
+
+  ThemeMode? _themeMode;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          cardColor: Colors.white,
-          appBarTheme:
-              AppBarTheme(color: Colors.teal, centerTitle: true, elevation: 0),
-          bottomAppBarColor: Colors.teal,
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: Color.fromARGB(255, 255, 203, 59))),
-      home: Hamberger(),
+      theme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+      themeMode: _themeMode,
       debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class Hamberger extends StatefulWidget {
-  @override
-  State<Hamberger> createState() => _HambergerState();
-}
-
-class _HambergerState extends State<Hamberger> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            title: Text("Deliver Me"),
-            leading: IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () {},
-            ),
-            actions: [
-              IconButton(onPressed: (() {}), icon: Icon(Icons.shopping_cart))
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Dark and Light Mode"),
+        ),
+        body: Column(children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text("User System Preference"),
+              ),
+              Switch(
+                value: _systemPreferenceSwitch,
+                onChanged: (newSwitchValue) {
+                  _systemPreferenceSwitch
+                      ? print("blocked")
+                      : setState(() {
+                          _systemPreferenceSwitch = true;
+                          _lightSwitch = false;
+                          _darkSwitch = false;
+                          _themeMode = null;
+                        });
+                },
+              )
             ],
           ),
-          Header(),
-          Categories(),
-          HambergersList(),
-          HambergersList(),
-        ],
-      ),
-      extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.home),
-      ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
-        child: Container(
-          color: Colors.black12,
-          child: BottomAppBar(
-            shape: CircularNotchedRectangle(),
-            child: Row(children: [
-              Spacer(),
-              IconButton(
-                icon: Icon(Icons.add_alert),
-                onPressed: () {},
-                color: Colors.white,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text("Light Mode"),
               ),
-              Spacer(),
-              Spacer(),
-              IconButton(
-                icon: Icon(Icons.turned_in),
-                onPressed: () {},
-                color: Colors.white,
-              ),
-              Spacer(),
-            ]),
+              Switch(
+                value: _lightSwitch,
+                onChanged: (newSwitchValue) {
+                  _lightSwitch
+                      ? print("blocked")
+                      : setState(() {
+                          _systemPreferenceSwitch = false;
+                          _lightSwitch = true;
+                          _darkSwitch = false;
+                          _themeMode = ThemeMode.light;
+                        });
+                },
+              )
+            ],
           ),
-        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text("Dark Mode"),
+              ),
+              Switch(
+                value: _darkSwitch,
+                onChanged: (newSwitchValue) {
+                  _darkSwitch
+                      ? print("blocked")
+                      : setState(() {
+                          _systemPreferenceSwitch = false;
+                          _lightSwitch = false;
+                          _darkSwitch = true;
+                          _themeMode = ThemeMode.dark;
+                        });
+                },
+              )
+            ],
+          ),
+        ]),
       ),
     );
   }
