@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
 
   Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
-    onSignOut();
+    onSignOut(null);
   }
 
   @override
