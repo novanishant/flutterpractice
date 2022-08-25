@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,6 +12,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        iconTheme: IconThemeData(color: Colors.pink),
+        appBarTheme: AppBarTheme(
+            elevation: 1,
+            color: Colors.white,
+            iconTheme: IconThemeData(color: Color.fromRGBO(40, 40, 40, 1))),
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
@@ -28,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: HomePage(),
       bottomNavigationBar: BottomAppBar(
           child: Row(
         children: [
