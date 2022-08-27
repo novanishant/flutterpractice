@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
+import 'search_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        iconTheme: IconThemeData(color: Colors.pink),
+        iconTheme: IconThemeData(color: Colors.black87),
         appBarTheme: AppBarTheme(
             elevation: 1,
             color: Colors.white,
@@ -34,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomePage(),
+      body: currentPage == 1 ? SearchPage() : HomePage(),
       bottomNavigationBar: BottomAppBar(
           child: Row(
         children: [
