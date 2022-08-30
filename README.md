@@ -1,16 +1,5 @@
-# flutter_catalog
+# Apps From Scratch | Flutter Chat UI Starter Repo
 
-A new Flutter project.
+Clone this repo and follow my YouTube video: [Flutter Chat UI Tutorial | Apps From Scratch](https://youtu.be/h-igXZCCrrc)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[Complete Chat UI](https://github.com/MarcusNg/flutter_chat_ui)
